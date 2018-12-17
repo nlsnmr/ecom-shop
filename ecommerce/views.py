@@ -23,4 +23,4 @@ def contact_page(request):
         "title": "Contact Page",
         "content": "Welcome contact page"
     }
-    return render(request, "contact_page.html", context)
+    return render(request, "contact/view.html", context)
