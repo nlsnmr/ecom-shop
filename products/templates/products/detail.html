@@ -1,16 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                {% if object.image %}
-                    <img src="{{ object.image.url }}" alt="" class="img-fluid"/>
-                {% endif %}
-                <h1>{{ object.title }}</h1>
-                Last update: {{ object.timestamp|timesince }} ago
-                {{ object.description | linebreaks }} <br/>
-            </div>
+    <div class="row">
+        <div class="col">
+            {% if object.image %}
+                <img src="{{ object.image.url }}" alt="" class="img-fluid"/>
+            {% endif %}
+            <h1>{{ object.title }}</h1>
+            Last update: {{ object.timestamp|timesince }} ago
+            {{ object.description | linebreaks }} <br/>
         </div>
     </div>
 {% endblock %}
