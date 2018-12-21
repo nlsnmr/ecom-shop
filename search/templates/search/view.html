@@ -9,8 +9,7 @@
             </div>
         {% else %}
             <div class='col-12 col-md-6 mx-auto py-5'>
-                Results for <b>{{ request.GET.q }}</b>
-                {#               {% include 'search/snippets/search-form.html' %}#}
+                {% include 'search/snippets/search-form.html' %}
             </div>
             <div class='col-12'>
                 <hr>
