@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^login/$', login_page, name='login'),
     url(r'^cart/$', cart_home, name='cart'),
     url(r'^register/$', register_page, name='register'),
+    url(r'^cart/', include("carts.urls")),
     url(r'^products/', include("products.urls")),
     url(r'^search/', include("search.urls")),
     url(r'^admin/', admin.site.urls),
