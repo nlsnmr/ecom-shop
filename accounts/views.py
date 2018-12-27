@@ -25,6 +25,7 @@ def guest_register_view(request):
 
     return redirect("/register")
 
+
 def login_page(request):
     form = LoginForm(request.POST or None)
     context = {
@@ -39,18 +40,22 @@ def login_page(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
+            try:
+                del request.session['guest_email_id']
+            except:
+                pass
             if is_safe_url(redirect_path, request.get_host()):
                 return redirect(redirect_path)
             else:
                 # Redirect to a success page.
                 # context['form'] = LoginForm()
                 return redirect("/login")
+
         else:
             # Return an 'invalid login' error message.
             return redirect("/login")
 
     return render(request, "accounts/login.html", context)
-
 
 User = get_user_model()
 
