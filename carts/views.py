@@ -2,7 +2,6 @@ from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 
-
 from accounts.forms import LoginForm, GuestForm
 from accounts.models import GuestEmail
 
@@ -13,6 +12,7 @@ from billing.models import BillingProfile
 from orders.models import Order
 from products.models import Product
 from .models import Cart
+
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
@@ -111,3 +111,7 @@ def checkout_home(request):
         "shipping_address_required": shipping_address_required,
     }
     return render(request, "carts/checkout.html", context)
+
+
+def checkout_done_view(request):
+    return render(request, "carts/checkout-done.html", {})
