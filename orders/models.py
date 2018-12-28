@@ -7,6 +7,7 @@ from carts.models import Cart
 from ecommerce.utils import unique_order_id_generator
 from django.utils import timezone
 from django.db.models import Count, Sum, Avg
+from addresses.models import Address
 
 ORDER_STATUS_CHOICES = (
     ('created', 'Created'),
@@ -15,6 +16,7 @@ ORDER_STATUS_CHOICES = (
     ('refunded', 'Refunded'),
     ('canceled', 'Canceled'),
 )
+
 
 class OrderManagerQuerySet(models.query.QuerySet):
     def recent(self):
@@ -30,7 +32,7 @@ class OrderManagerQuerySet(models.query.QuerySet):
         paid_data = paid.totals_data()
         data = {
             'recent': recent,
-            'recent_data':recent_data,
+            'recent_data': recent_data,
             'recent_cart_data': recent_cart_data,
             'shipped': shipped,
             'shipped_data': shipped_data,
@@ -43,7 +45,7 @@ class OrderManagerQuerySet(models.query.QuerySet):
         if number_of_weeks > weeks_ago:
             number_of_weeks = weeks_ago
         days_ago_start = weeks_ago * 7  # days_ago_start = 49
-        days_ago_end = days_ago_start - (number_of_weeks * 7) #days_ago_end = 49 - 14 = 35
+        days_ago_end = days_ago_start - (number_of_weeks * 7)  # days_ago_end = 49 - 14 = 35
         start_date = timezone.now() - datetime.timedelta(days=days_ago_start)
         end_date = timezone.now() - datetime.timedelta(days=days_ago_end)
         return self.by_range(start_date, end_date=end_date)
@@ -62,10 +64,10 @@ class OrderManagerQuerySet(models.query.QuerySet):
 
     def cart_data(self):
         return self.aggregate(
-                        Sum("cart__products__price"),
-                        Avg("cart__products__price"),
-                        Count("cart__products")
-                                    )
+            Sum("cart__products__price"),
+            Avg("cart__products__price"),
+            Count("cart__products")
+        )
 
     def by_status(self, status="shipped"):
         return self.filter(status=status)
@@ -80,6 +82,7 @@ class OrderManagerQuerySet(models.query.QuerySet):
     def not_created(self):
         return self.exclude(status='created')
 
+
 class OrderManager(models.Manager):
     def get_queryset(self):
         return OrderManagerQuerySet(self.model, using=self._db)
@@ -90,26 +93,26 @@ class OrderManager(models.Manager):
     def new_or_get(self, billing_profile, cart_obj):
         created = False
         qs = self.get_queryset().filter(
-                billing_profile=billing_profile,
-                cart=cart_obj,
-                active=True,
-                status='created'
-            )
+            billing_profile=billing_profile,
+            cart=cart_obj,
+            active=True,
+            status='created'
+        )
         if qs.count() == 1:
             obj = qs.first()
         else:
             obj = self.model.objects.create(
-                    billing_profile=billing_profile,
-                    cart=cart_obj)
+                billing_profile=billing_profile,
+                cart=cart_obj)
             created = True
 
 
-
 class Order(models.Model):
-    billing_profile     = models.ForeignKey(BillingProfile, null=True, blank=True, on_delete=False)
+    billing_profile = models.ForeignKey(BillingProfile, null=True, blank=True, on_delete=False)
     order_id = models.CharField(max_length=120, blank=True)
-    # shipping_address    = models.ForeignKey(Address, related_name="shipping_address",null=True, blank=True)
-    # billing_address     = models.ForeignKey(Address, related_name="billing_address", null=True, blank=True)
+    shipping_address = models.ForeignKey(Address, related_name="shipping_address", null=True, blank=True,
+                                         on_delete=False)
+    billing_address = models.ForeignKey(Address, related_name="billing_address", null=True, blank=True, on_delete=False)
     shipping_address_final = models.TextField(blank=True, null=True)
     billing_address_final = models.TextField(blank=True, null=True)
     cart = models.ForeignKey(Cart, on_delete=False)
@@ -133,6 +136,30 @@ class Order(models.Model):
         self.total = formatted_total
         self.save()
         return new_total
+
+    def check_done(self):
+        shipping_address_required = not self.cart.is_digital
+        shipping_done = False
+        if shipping_address_required and self.shipping_address:
+            shipping_done = True
+        elif shipping_address_required and not self.shipping_address:
+            shipping_done = False
+        else:
+            shipping_done = True
+        billing_profile = self.billing_profile
+        billing_address = self.billing_address
+        total = self.total
+        if billing_profile and shipping_done and billing_address and total > 0:
+            return True
+        return False
+
+    def mark_paid(self):
+        if self.status != 'paid':
+            if self.check_done():
+                self.status = "paid"
+                self.save()
+                self.update_purchases()
+        return self.status
 
 
 def pre_save_create_order_id(sender, instance, *args, **kwargs):

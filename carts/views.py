@@ -1,12 +1,18 @@
+from django.conf import settings
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
-from .models import Cart
-from products.models import Product
-from orders.models import Order
+
+
 from accounts.forms import LoginForm, GuestForm
 from accounts.models import GuestEmail
+
+from addresses.forms import AddressCheckoutForm
+from addresses.models import Address
+
 from billing.models import BillingProfile
-from addresses.forms import AddressForm
+from orders.models import Order
+from products.models import Product
+from .models import Cart
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
