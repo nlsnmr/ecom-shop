@@ -6,7 +6,7 @@ from orders.models import Order
 from accounts.forms import LoginForm, GuestForm
 from accounts.models import GuestEmail
 from billing.models import BillingProfile
-
+from addresses.forms import AddressForm
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
