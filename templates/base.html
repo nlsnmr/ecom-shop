@@ -35,13 +35,13 @@
             clearTimeout(typingTimer);
         });
 
-        function doSearch() {
+        function displaySearching() {
             searchBtn.add("disabled");
             searchBtn.html("<i class=\"fas fa-spinner\"></i> Searching...");
         }
 
         function performSearch() {
-            doSearch();
+            displaySearching();
             var query = searchInput.val();
             setTimeout(function () {
                 window.location.href = '/search/?q=' + query
