@@ -13,6 +13,10 @@ from orders.models import Order
 from products.models import Product
 from .models import Cart
 
+# import stripe
+STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY", "sk_test_cu1lQmcg1OLffhLvYrSCp5XE___")
+STRIPE_PUB_KEY =  getattr(settings, "STRIPE_PUB_KEY", 'pk_test_PrV61avxnHaWIYZEeiYTTVMZ___')
+# stripe.api_key = STRIPE_SECRET_KEY
 
 def cart_home(request):
     cart_obj, new_obj = Cart.objects.new_or_get(request)
@@ -55,12 +59,12 @@ def checkout_home(request):
     if cart_created or cart_obj.products.count() == 0:
         return redirect("cart:home")
 
-    login_form = LoginForm(request=request)
-    guest_form = GuestForm(request=request)
+    login_form = LoginForm(request)
+    guest_form = GuestForm(request)
     address_form = AddressCheckoutForm()
     billing_address_id = request.session.get("billing_address_id", None)
 
-    shipping_address_required = not cart_obj.is_digital
+    # shipping_address_required = not cart_obj.is_digital
 
     shipping_address_id = request.session.get("shipping_address_id", None)
 
@@ -108,7 +112,8 @@ def checkout_home(request):
         "address_qs": address_qs,
         "has_card": has_card,
         "publish_key": STRIPE_PUB_KEY,
-        "shipping_address_required": shipping_address_required,
+        "shipping_address_required": False,
+        # "shipping_address_required": shipping_address_required,
     }
     return render(request, "carts/checkout.html", context)
 

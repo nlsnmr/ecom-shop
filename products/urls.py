@@ -5,7 +5,7 @@ from .views import (
     ProductDetailSlugView
     )
 
-app_name = 'products' #, 'account', 'cart'
+app_name = 'products'
 
 urlpatterns = [
     url(r'^$', ProductListView.as_view(), name='list'),

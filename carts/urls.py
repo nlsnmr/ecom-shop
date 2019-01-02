@@ -7,6 +7,8 @@ from .views import (
     checkout_done_view
 )
 
+app_name = 'cart'
+
 urlpatterns = [
     url(r'^$', cart_home, name='home'),
     url(r'^checkout/success/$', checkout_done_view, name='success'),
