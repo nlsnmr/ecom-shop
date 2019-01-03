@@ -1,0 +1,100 @@
+[
+{
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+        "title": "product-1",
+        "slug": "product-4",
+        "description": "product 1 description",
+        "price": "39.99",
+        "image": "products/1515165724/1515165724.png",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-20T14:39:35.993Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+        "title": "product 2",
+        "slug": "product-5",
+        "description": "product 2 description",
+        "price": "39.99",
+        "image": "products/605753593/605753593.jpg",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-12-20T14:39:35.993Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+        "title": "product 6",
+        "slug": "product-6",
+        "description": "Introduction\r\nURL namespaces allow you to uniquely reverse named URL patterns even if different applications use the same URL names. It\u2019s a good practice for third-party apps to always use namespaced URLs (as we did in the tutorial). Similarly, it also allows you to reverse URLs if multiple instances of an application are deployed. In other words, since multiple instances of a single application will share named URLs, namespaces provide a way to tell these named URLs apart.",
+        "price": "39.99",
+        "image": "products/3092763035/3092763035.png",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-12-20T14:39:35.993Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 7,
+    "fields": {
+        "title": "product 7",
+        "slug": "product-7",
+        "description": "No safety guarantee\r\n\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.No safety guarantee\r\n\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.",
+        "price": "39.99",
+        "image": "products/1359882252/1359882252.png",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-12-20T14:57:39.332Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 8,
+    "fields": {
+        "title": "product 8",
+        "slug": "product-8",
+        "description": "No safety guarantee\r\nNo safety guarantee\r\n\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.",
+        "price": "39.99",
+        "image": "products/117456512/117456512.jpeg",
+        "featured": true,
+        "active": true,
+        "timestamp": "2018-12-20T14:58:07.387Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 9,
+    "fields": {
+        "title": "product 9",
+        "slug": "product-9",
+        "description": "No safety guarantee\r\n\r\nNo safety guarantee\r\n\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.No safety guarantee\r\nNote that striptags doesn\u2019t give any guarantee about its output being HTML safe, particularly with non valid HTML input. So NEVER apply the safe filter to a striptags output. If you are looking for something more robust, you can use the bleach Python library, notably its clean method.he bleach Python library, notably its clean method.",
+        "price": "39.99",
+        "image": "products/2990953948/2990953948.png",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-20T14:58:32.604Z"
+    }
+},
+{
+    "model": "products.product",
+    "pk": 10,
+    "fields": {
+        "title": "t-ab",
+        "slug": "t-ab",
+        "description": "testtt",
+        "price": "39.99",
+        "image": "",
+        "featured": false,
+        "active": true,
+        "timestamp": "2018-12-21T17:05:39.843Z"
+    }
+}
+]
