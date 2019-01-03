@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'orders',
     'accounts',
     'billing',
-    'addresses'
+    'addresses',
+    'analytics'
 ]
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
