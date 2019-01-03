@@ -1,8 +1,17 @@
+from datetime import timedelta
+from django.conf import settings
 from django.db import models
+from django.db.models import Q
+from django.db.models.signals import pre_save, post_save
 from django.contrib.auth.models import (
     AbstractBaseUser, BaseUserManager
 )
 
+from django.core.mail import send_mail
+from django.template.loader import get_template
+from django.utils import timezone
+
+from ecommerce.utils import random_string_generator, unique_key_generator
 
 class UserManager(BaseUserManager):
     def create_user(self, email, full_name=None, password=None, is_active=True, is_staff=False, is_admin=False):
@@ -54,6 +63,8 @@ class User(AbstractBaseUser):
     USERNAME_FIELD = 'email'  # username
     # USERNAME_FIELD and password are required by default
     REQUIRED_FIELDS = []  # ['full_name'] #python manage.py createsuperuser
+
+    objects = UserManager()
 
     def __str__(self):
         return self.email
