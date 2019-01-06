@@ -6,6 +6,9 @@ from accounts.models import GuestEmail
 
 User = settings.AUTH_USER_MODEL
 
+import stripe
+
+stripe.api_key = "sk_test_yT2kdPo6H6R4ux82MsyrkPEG"
 
 class BillingProfileManager(models.Manager):
     def new_or_get(self, request):
