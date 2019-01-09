@@ -13,9 +13,10 @@ from orders.models import Order
 from products.models import Product
 from .models import Cart
 
-# import stripe
-STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY", "sk_test_cu1lQmcg1OLffhLvYrSCp5XE___")
-STRIPE_PUB_KEY = getattr(settings, "STRIPE_PUB_KEY", 'pk_test_PrV61avxnHaWIYZEeiYTTVMZ___')
+import stripe
+STRIPE_SECRET_KEY = getattr(settings, "STRIPE_SECRET_KEY")
+STRIPE_PUB_KEY = getattr(settings, "STRIPE_PUB_KEY")
+stripe.api_key = STRIPE_SECRET_KEY
 
 
 # stripe.api_key = STRIPE_SECRET_KEY

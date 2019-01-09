@@ -50,6 +50,9 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
 
+STRIPE_SECRET_KEY = "sk_test_yT2kdPo6H6R4ux82MsyrkPEG"
+STRIPE_PUB_KEY = 'pk_test_Bz1MpNExcRPDzRW8oJPkdZUc'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
