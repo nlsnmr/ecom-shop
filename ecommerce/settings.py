@@ -45,10 +45,15 @@ INSTALLED_APPS = [
     'accounts',
     'billing',
     'addresses',
+    'marketing',
     'analytics'
 ]
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
+
+MAILCHIMP_API_KEY = '2fac6861460dd23cfdfbaaba6253242a-us20'
+MAILCHIMP_DATA_CENTER = "us20"
+MAILCHIMP_EMAIL_LIST_ID = "88a1f1036c"
 
 STRIPE_SECRET_KEY = "sk_test_yT2kdPo6H6R4ux82MsyrkPEG"
 STRIPE_PUB_KEY = 'pk_test_Bz1MpNExcRPDzRW8oJPkdZUc'
