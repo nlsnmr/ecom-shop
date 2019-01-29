@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'billing',
     'addresses',
     'marketing',
-    'analytics'
+    'analytics',
+    'storages'
 ]
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
@@ -152,6 +153,7 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
+from ecommerce.aws.conf import *
 
 # Let's Encrypt ssl/tls https
 
