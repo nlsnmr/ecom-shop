@@ -1,9 +1,10 @@
 import datetime
+import os
 
 AWS_GROUP_NAME = "django_ecom_group"
 AWS_USERNAME = "django-ecom-user"
-AWS_ACCESS_KEY_ID = "AKIAIJTEGJG5QQXH3R6Q"
-AWS_SECRET_ACCESS_KEY = "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"
+AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
+AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 AWS_DEFAULT_ACL = None
 
