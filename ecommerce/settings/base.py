@@ -20,12 +20,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__fil
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '-46x*#cw(sw537bhl5rm(&84p*8(s&6daxo%sb80gtk1gad2kg'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['.herokuapp.com']
 
 
 # Application definition
@@ -52,12 +52,12 @@ INSTALLED_APPS = [
 
 AUTH_USER_MODEL = 'accounts.User' #changes the built-in user model to ours
 
-MAILCHIMP_API_KEY = '2fac6861460dd23cfdfbaaba6253242a-us20'
-MAILCHIMP_DATA_CENTER = "us20"
-MAILCHIMP_EMAIL_LIST_ID = "88a1f1036c"
+MAILCHIMP_API_KEY = os.environ.get('MAILCHIMP_API_KEY')
+MAILCHIMP_DATA_CENTER = os.environ.get('MAILCHIMP_DATA_CENTER')
+MAILCHIMP_EMAIL_LIST_ID = os.environ.get('MAILCHIMP_EMAIL_LIST_ID')
 
-STRIPE_SECRET_KEY = "sk_test_yT2kdPo6H6R4ux82MsyrkPEG"
-STRIPE_PUB_KEY = 'pk_test_Bz1MpNExcRPDzRW8oJPkdZUc'
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUB_KEY = os.environ.get('STRIPE_PUB_KEY')
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
