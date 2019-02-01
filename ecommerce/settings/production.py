@@ -27,6 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['.herokuapp.com']
 
+BASE_URL = 'https://python-django-eshop.herokuapp.com'
 
 # Application definition
 

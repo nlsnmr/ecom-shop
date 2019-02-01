@@ -15,7 +15,7 @@ MAILCHIMP_EMAIL_LIST_ID = getattr(settings, "MAILCHIMP_EMAIL_LIST_ID", None)
 
 class MarketingPreferenceUpdateView(SuccessMessageMixin, UpdateView):
     form_class = MarketingPreferenceForm
-    template_name = 'base/forms.html'  # yeah create this
+    template_name = 'base/forms.html'
     success_url = '/settings/email/'
     success_message = 'Your email preferences have been updated. Thank you.'
 
