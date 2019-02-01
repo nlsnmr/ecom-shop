@@ -14,7 +14,7 @@ from django.utils.safestring import mark_safe
 from ecommerce.mixins import NextUrlMixin, RequestFormAttachMixin
 from .forms import LoginForm, RegisterForm, GuestForm
 from .models import GuestEmail
-# from .signals import user_logged_in
+from .signals import user_logged_in
 
 
 # @login_required # /accounts/login/?next=/some/path/
